@@ -1,7 +1,23 @@
 import { Outlet } from 'react-router';
 import styles from './Layout.module.scss';
+import { api } from '@/services/api';
+import { useState, useEffect } from 'react';
 
 export const Layout = () => {
+  const [bookmarks, setBookmarks] = useState()
+
+  useEffect(() => {
+    // useEffect не может быть async, поэтому создаём функцию внутри
+    const fetchBookmarks = async () => {
+      const data = await api.get("/api/bookmarks");
+      setBookmarks(data);
+    };
+
+    fetchBookmarks();
+  }, []);
+
+  console.log(bookmarks);
+
   return (
     <div className={styles.wrapper}>
       <header className={styles.header}>
@@ -15,7 +31,7 @@ export const Layout = () => {
       <aside className={styles.sidebar}>
         <header>
           <a href="/">
-            <img src="" alt="" width="" height="" loading="lazy" />
+            {/*<img src="" alt="" width="" height="" loading="lazy" />*/}
             <h1>Bookmark manager</h1>
           </a>
         </header>
