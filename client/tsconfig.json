@@ -1,23 +1,21 @@
 {
   "compilerOptions": {
-    "target": "ES2020", // компиляция в современный js
-    "useDefineForClassFields": true, // указываем как обрабатывать поля классов
-    "lib": ["ES2020", "DOM", "DOM.Iterable"], // подключаем встроенные типы
-    "module": "ESNext", // указываем формат работы с модулями
-    "skipLibCheck": true, // не проверять типы из node modules
-    "moduleResolution": "bundler", // делегируем работу с модулями vite
-    "allowImportingTsExtensions": true, // разрешаем явный импорт файлов с расширением .tsx
-    "resolveJsonModule": true, // разрешаем импортировать json файлы напрямую
-    "isolatedModules": true, // независимая компиляция каждого файла
-    "noEmit": true, // говорим TS только проверять типы
-    "jsx": "react-jsx", // говорим как обрабатывать jsx
-    "strict": true, // включение строгих проверок
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "strict": true,
     "ignoreDeprecations": "5.0",
-    "baseUrl": ".", // папка для резолвов импортов
     "paths": {
-      "@/*": ["./src/*"] // alias, который говорит TS при указании @ искать файлы в .src
+      "@/*": ["./src/*"]
     }
   },
-  "include": ["src"], // проверки только внутри src
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src"]
 }
