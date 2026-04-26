@@ -3,7 +3,7 @@
   --neutral-900: #051513;
   --neutral-800: #4c5c59;
   --neutral-500: #899492;
-  --neutral-400: #COCFCC;
+  --neutral-400: #c0cfcc;
   --neutral-300: #dde9e7;
   --neutral-100: #e8f0ef;
   --neutral-0: #ffffff;
@@ -45,6 +45,15 @@
 
   --color-danger: var(--red-600);
   --color-danger-hover: var(--red-800);
+
+  --color-surface-inverse: var(--neutral-0);
+  --color-surface-inverse-search: var(--neutral-0);
+  --color-nav-item-bg: var(--neutral-100);
+  --color-nav-item-checked: var(--neutral-800);
+  --color-tag-item: var(--neutral-100);
+
+  --color-tag-quantity-item-hover: var(--neutral-400);
+
 }
 
 [data-theme='dark'] {
@@ -62,4 +71,12 @@
 
   --color-danger: var(--red-600);
   --color-danger-hover: var(--red-800);
+
+  --color-surface-inverse: var(--neutral-dark-800);
+  --color-surface-inverse-search: var(--neutral-dark-600);
+  --color-nav-item-bg: var(--neutral-dark-600);
+  --color-nav-item-checked: var(--neutral-dark-0);
+  --color-tag-item: var(--neutral-dark-600);
+
+  --color-tag-quantity-item-hover: var(--neutral-dark-400);
 }

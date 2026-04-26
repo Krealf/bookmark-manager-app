@@ -11,6 +11,8 @@ export default defineConfig({
     },
   },
   css: {
+    // Можно посмотреть стили прямо в браузере
+    devSourcemap: true,
     // Для каждого scss модуля
     preprocessorOptions: {
       scss: {

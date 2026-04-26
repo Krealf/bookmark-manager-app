@@ -13,6 +13,7 @@ export const router = createBrowserRouter([
       // Внутри обёртки рендерятся дети:
       { index: true, element: <HomePage /> },
       { path: 'add', element: <AddPage /> },
+      { path: 'archived', element: <AddPage /> },
       { path: 'edit/:id', element: <EditPage /> },
     ],
   },

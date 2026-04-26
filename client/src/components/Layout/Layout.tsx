@@ -2,14 +2,22 @@ import { Outlet } from 'react-router';
 import styles from './Layout.module.scss';
 import { api } from '@/services/api';
 import { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/Button';
+import { SearchField } from '@/components/ui/SearchField';
+import { IconMenuHamburger, IconPlus, IconSearch } from 'shared/icons';
+import { SideBar } from '@/components/ui/SideBar/SideBar.tsx';
+import { useSidebarOpen } from '@/hooks/useSidebarOpen.ts';
+
 
 export const Layout = () => {
-  const [bookmarks, setBookmarks] = useState()
+  const [bookmarks, setBookmarks] = useState();
+  const { isOpen, close, toggle } = useSidebarOpen();
 
   useEffect(() => {
     // useEffect не может быть async, поэтому создаём функцию внутри
+    console.log("fetching data");
     const fetchBookmarks = async () => {
-      const data = await api.get("/api/bookmarks");
+      const data = await api.get('/api/bookmarks');
       setBookmarks(data);
     };
 
@@ -19,41 +27,54 @@ export const Layout = () => {
   console.log(bookmarks);
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.layout}>
       <header className={styles.header}>
-        <input id="" name="" className={styles.search} />
-        <div>
-          <button type="button"></button>
-          <a href="/"></a>
+        <div className={styles.controls}>
+          <button
+            className={`${styles.burgerButton} visible-mobile`}
+            aria-expanded={isOpen}
+            aria-controls="sidebar"
+            aria-label="Open menu"
+            type="button"
+            onClick={toggle}
+          >
+            <IconMenuHamburger size={20} />
+          </button>
+          <div className={styles.searchWrapper}>
+            <SearchField placeholder="Search by title..." icon={IconSearch} />
+          </div>
+        </div>
+        <div className={styles.actions}>
+          <Button
+            variant="primary"
+            size="md"
+            icon={IconPlus}
+            sizeIcon={25}
+            className={styles.addBookmark}
+          >
+            Add Bookmark
+          </Button>
+          <a href="/" className={styles.avatar}>
+            <img src="./avatars/image-avatar.webp" alt="" height="40" width="40" loading="lazy" />
+          </a>
         </div>
       </header>
 
-      <aside className={styles.sidebar}>
-        <header>
-          <a href="/">
-            {/*<img src="" alt="" width="" height="" loading="lazy" />*/}
-            <h1>Bookmark manager</h1>
-          </a>
-        </header>
-        <div className={styles.panels}>
-          <div>Home</div>
-          <div>Archived</div>
-        </div>
-        <div>
-          <h2>Tags</h2>
-          <ul>
-            <li>AI</li>
-            <li>AI</li>
-            <li>AI</li>
-            <li>AI</li>
-            <li>AI</li>
-            <li>AI</li>
-          </ul>
-        </div>
-      </aside>
+      <div
+        className={`${styles.overlay} ${isOpen ? styles.open : ''}`}
+        onClick={close}
+      />
+
+      <SideBar
+        className={styles.sidebar}
+        id="sidebar"
+        isOpen={isOpen}
+      />
 
       <main className={styles.main}>
-        <Outlet />
+        <section className={styles.section}>
+          <Outlet />
+        </section>
       </main>
     </div>
   );

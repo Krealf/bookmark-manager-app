@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface Bookmark {
   id: string;
   title: string;
@@ -7,11 +9,24 @@ export interface Bookmark {
   createdAt: string;
 }
 
-export type CreateBookmarkDto = Omit<Bookmark, 'id' | 'createdAt'>;
+export interface SvgProps extends React.SVGProps<SVGSVGElement> {
+  size: number;
+  fill?: string;
+}
 
-export type UpdateBookmarkDto = Partial<CreateBookmarkDto>;
+export interface CheckboxProps {
+  label: string;
+  checked: boolean;
+  onChange?: (checked: boolean) => void;
+  disabled?: boolean;
+  id: string;
+}
 
 export interface ApiResponse<T> {
   data: T;
   message?: string;
 }
+
+export type CreateBookmarkDto = Omit<Bookmark, 'id' | 'createdAt'>;
+
+export type UpdateBookmarkDto = Partial<CreateBookmarkDto>;

@@ -2,9 +2,10 @@
 
 body {
   font-size: rem(14);
-  line-height: 150%;
+  line-height: 140%;
   font-family: 'Manrope', sans-serif;
   letter-spacing: 0;
+  font-weight: 600;
 
   color: var(--color-text);
   background-color: var(--color-bg);
@@ -44,7 +45,9 @@ a {
 }
 
 :focus-visible {
-  outline: rem(2) solid var(--color-text);
+  box-shadow:
+    0 0 0 rem(4) var(--color-surface);
+  outline: rem(4) solid var(--color-primary);
   outline-offset: rem(4);
   transition-duration: 0s !important;
 }
