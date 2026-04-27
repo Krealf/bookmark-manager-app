@@ -10,7 +10,12 @@ interface SideBarProps extends React.HTMLAttributes<HTMLElement> {
   isOpen: boolean;
 }
 
-export const SideBar = ({ isLoading = false, className, isOpen, ...rest }: SideBarProps) => {
+export const SideBar = (
+  {
+    // isLoading = false,
+    className, isOpen,
+    ...rest
+  }: SideBarProps) => {
   return (
     <aside
       className={`${styles.sidebar} ${className ?? ''} ${isOpen ? styles.open : ''}`}
