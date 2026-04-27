@@ -21,13 +21,13 @@ export const SideBar = ({ isLoading = false, className, isOpen, ...rest }: SideB
       <header className={styles.header}>
         <a href="/" className={styles.headerLogo}>
           <img
-            src="./icons/logo-light-theme.svg"
+            src="./assets/icons/logo-light-theme.svg"
             alt=""
             loading="lazy"
             className={styles.logoLight}
           />
           <img
-            src="./icons/logo-dark-theme.svg"
+            src="./assets/icons/logo-dark-theme.svg"
             alt=""
             loading="lazy"
             className={styles.logoDark}

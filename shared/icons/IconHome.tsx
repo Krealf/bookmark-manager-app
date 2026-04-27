@@ -1,15 +1,9 @@
 import React from 'react';
 import { SvgProps } from '../types';
 
-export const IconHome = ({ size, fill}: SvgProps) => {
+export const IconHome = ({ size, fill }: SvgProps) => {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={size}
-      height={size}
-      fill={fill}
-      viewBox="0 0 20 20"
-    >
+    <svg width={size} height={size} fill={fill} viewBox="0 0 20 20">
       <path
         stroke="#051513"
         strokeLinecap="round"

@@ -1,9 +1,8 @@
 import { createBrowserRouter } from 'react-router';
-import { HomePage } from '@/pages/HomePage.tsx';
-import { AddPage } from '@/pages/AddPage.tsx';
-import { EditPage } from '@/pages/EditPage.tsx';
+import { HomePage } from '@/pages/HomePage/HomePage.tsx';
 import { NotFoundPage } from '@/pages/NotFoundPage.tsx';
 import { Layout } from '@/components/Layout/Layout.tsx';
+import { ArchivedPage } from '@/pages/Archived/ArchivedPage.tsx';
 
 export const router = createBrowserRouter([
   {
@@ -12,9 +11,7 @@ export const router = createBrowserRouter([
     children: [
       // Внутри обёртки рендерятся дети:
       { index: true, element: <HomePage /> },
-      { path: 'add', element: <AddPage /> },
-      { path: 'archived', element: <AddPage /> },
-      { path: 'edit/:id', element: <EditPage /> },
+      { path: 'archived', element: <ArchivedPage /> },
     ],
   },
   {

@@ -1,17 +1,17 @@
 import React from 'react';
 import { SvgProps } from '../types';
 
-export const IconArchived = ({ size, fill }: SvgProps) => {
+export const IconArchived = ({ size }: SvgProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={size}
       height={size}
-      fill={fill}
+      fill="none"
       viewBox="0 0 20 20"
     >
       <path
-        stroke="#051513"
+        stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="1.6"

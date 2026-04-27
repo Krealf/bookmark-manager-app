@@ -54,6 +54,7 @@
 
   --color-tag-quantity-item-hover: var(--neutral-400);
 
+  --color-favicon-border: var(--neutral-100);
 }
 
 [data-theme='dark'] {
@@ -79,4 +80,6 @@
   --color-tag-item: var(--neutral-dark-600);
 
   --color-tag-quantity-item-hover: var(--neutral-dark-400);
+
+  --color-favicon-border: var(--neutral-dark-500);
 }

@@ -3,10 +3,15 @@ import React from 'react';
 export interface Bookmark {
   id: string;
   title: string;
-  description: string;
   url: string;
+  favicon: string;
+  description: string;
   tags: string[];
+  pinned: boolean;
+  isArchived: boolean;
+  visitCount: number;
   createdAt: string;
+  lastVisited: string;
 }
 
 export interface SvgProps extends React.SVGProps<SVGSVGElement> {
@@ -20,6 +25,15 @@ export interface CheckboxProps {
   onChange?: (checked: boolean) => void;
   disabled?: boolean;
   id: string;
+}
+
+export interface DropdownMenuItem {
+  label: string;
+  icon: React.ReactNode;
+}
+
+export interface DropdownMenuProps {
+  items: DropdownMenuItem[];
 }
 
 export interface ApiResponse<T> {

@@ -48,7 +48,7 @@
       transition: var(--transition-duration);
     }
   }
-  
+
   @include hover() {
     background-color: var(--color-border);
   }

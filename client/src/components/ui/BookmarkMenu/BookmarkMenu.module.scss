@@ -1,0 +1,19 @@
+.menu {
+  position: relative;
+}
+
+.button {
+  color: var(--color-text);
+  background-color: transparent;
+  box-shadow: 0 0 0 rem(1) var(--color-favicon-border);
+  padding: rem(6);
+
+  border-radius: rem(8);
+  border: 0;
+
+  @include flex-center();
+
+  @include hover() {
+    background-color: var(--color-favicon-border);
+  }
+}

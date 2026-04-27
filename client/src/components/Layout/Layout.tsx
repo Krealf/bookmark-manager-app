@@ -1,30 +1,13 @@
 import { Outlet } from 'react-router';
 import styles from './Layout.module.scss';
-import { api } from '@/services/api';
-import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/Button';
 import { SearchField } from '@/components/ui/SearchField';
 import { IconMenuHamburger, IconPlus, IconSearch } from 'shared/icons';
 import { SideBar } from '@/components/ui/SideBar/SideBar.tsx';
 import { useSidebarOpen } from '@/hooks/useSidebarOpen.ts';
 
-
 export const Layout = () => {
-  const [bookmarks, setBookmarks] = useState();
   const { isOpen, close, toggle } = useSidebarOpen();
-
-  useEffect(() => {
-    // useEffect не может быть async, поэтому создаём функцию внутри
-    console.log("fetching data");
-    const fetchBookmarks = async () => {
-      const data = await api.get('/api/bookmarks');
-      setBookmarks(data);
-    };
-
-    fetchBookmarks();
-  }, []);
-
-  console.log(bookmarks);
 
   return (
     <div className={styles.layout}>
@@ -55,26 +38,23 @@ export const Layout = () => {
             Add Bookmark
           </Button>
           <a href="/" className={styles.avatar}>
-            <img src="./avatars/image-avatar.webp" alt="" height="40" width="40" loading="lazy" />
+            <img
+              src="./assets/avatars/image-avatar.webp"
+              alt=""
+              height="40"
+              width="40"
+              loading="lazy"
+            />
           </a>
         </div>
       </header>
 
-      <div
-        className={`${styles.overlay} ${isOpen ? styles.open : ''}`}
-        onClick={close}
-      />
+      <div className={`${styles.overlay} ${isOpen ? styles.open : ''}`} onClick={close} />
 
-      <SideBar
-        className={styles.sidebar}
-        id="sidebar"
-        isOpen={isOpen}
-      />
+      <SideBar className={styles.sidebar} id="sidebar" isOpen={isOpen} />
 
       <main className={styles.main}>
-        <section className={styles.section}>
-          <Outlet />
-        </section>
+        <Outlet />
       </main>
     </div>
   );
