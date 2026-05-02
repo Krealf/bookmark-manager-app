@@ -1,4 +1,5 @@
 .dropdown {
+  user-select: none;
   position: absolute;
   top: 100%;
   right: 0;
@@ -15,21 +16,26 @@
 }
 
 .dropdownItem {
+  & svg {
+    fill: transparent;
+  }
+}
+
+.dropdownControl {
   font-weight: 600;
-  padding: rem(8);
+  color: var(--color-text-muted);
+  background-color: transparent;
+  border: 0;
+  border-radius: rem(8);
   display: flex;
   flex-direction: row;
   align-items: center;
+  text-decoration: none;
   gap: rem(10);
-  cursor: pointer;
-  color: var(--color-text-muted);
-  border-radius: rem(8);
+  width: 100%;
+  padding: rem(8);
 
-  & > svg {
-    fill: transparent;
-  }
-
-  @include hover() {
+  @include hover(true) {
     background-color: var(--color-nav-item-bg);
     color: var(--color-text);
   }

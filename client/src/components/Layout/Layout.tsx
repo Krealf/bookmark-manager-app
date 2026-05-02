@@ -51,11 +51,14 @@ export const Layout = () => {
 
       <div className={`${styles.overlay} ${isOpen ? styles.open : ''}`} onClick={close} />
 
+      {/* Оборачиваем Sidebar и main в провайдера для получения закладок и состояния загрузки */}
+      {/*<BookmarksProvider>*/}
       <SideBar className={styles.sidebar} id="sidebar" isOpen={isOpen} />
 
       <main className={styles.main}>
         <Outlet />
       </main>
+      {/*</BookmarksProvider>*/}
     </div>
   );
 };

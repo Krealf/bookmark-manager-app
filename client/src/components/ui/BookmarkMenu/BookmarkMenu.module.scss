@@ -17,3 +17,10 @@
     background-color: var(--color-favicon-border);
   }
 }
+
+.active {
+  box-shadow: 0 0 0 rem(4) var(--color-surface);
+  outline: rem(4) solid var(--color-primary);
+  outline-offset: rem(4);
+  transition-duration: 0s !important;
+}

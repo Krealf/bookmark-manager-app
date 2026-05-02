@@ -4,6 +4,7 @@ import { NotFoundPage } from '@/pages/NotFoundPage.tsx';
 import { Layout } from '@/components/Layout/Layout.tsx';
 import { ArchivedPage } from '@/pages/Archived/ArchivedPage.tsx';
 
+// Создаём роутер
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -15,6 +16,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
+    // Все остальные неизвестные пути возвращают NotFound
     path: '*',
     element: <NotFoundPage />,
   },

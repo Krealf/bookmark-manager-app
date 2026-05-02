@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3001; // Определение порта
 app.use(cors()); // Добавление заголовков Access-Control-Allow-Origin
 app.use(express.json()); // Извлечение JSON данных
 
-app.use('/api/bookmarks', BookmarkRouter);
+app.use('/api/bookmarks', BookmarkRouter); // Говорим использовать middleware Bookmark по пути /api/bookmarks
 
 // Запуск сервера
 app.listen(PORT, () => {

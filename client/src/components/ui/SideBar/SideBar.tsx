@@ -4,18 +4,23 @@ import React from 'react';
 import { IconHome, IconArchived } from 'shared/icons';
 import { NavLink } from 'react-router';
 import { Checkbox } from '@/components/ui/Checkbox/Checkbox.tsx';
+import { useBookmarks } from '@/hooks/useBookmarks.ts';
+import { getTagsCount } from '@/utils/getTagsCount.ts';
 
 interface SideBarProps extends React.HTMLAttributes<HTMLElement> {
   isLoading?: boolean;
   isOpen: boolean;
 }
 
-export const SideBar = (
-  {
-    // isLoading = false,
-    className, isOpen,
-    ...rest
-  }: SideBarProps) => {
+export const SideBar = ({
+  // isLoading = false,
+  className,
+  isOpen,
+  ...rest
+}: SideBarProps) => {
+  const { bookmarks, loading } = useBookmarks();
+  const { keys, entries } = getTagsCount(bookmarks);
+
   return (
     <aside
       className={`${styles.sidebar} ${className ?? ''} ${isOpen ? styles.open : ''}`}
@@ -67,24 +72,14 @@ export const SideBar = (
             Tags
           </h2>
           <ul className={styles.tagList} role="list">
-            <li className={styles.tagItem}>
-              <label htmlFor="ai" className={styles.tagLabel}>
-                <Checkbox label="Ai" checked={true} id="ai" />
-                <span className={styles.tagQuantity}>2</span>
-              </label>
-            </li>
-            <li className={styles.tagItem}>
-              <label htmlFor="community" className={styles.tagLabel}>
-                <Checkbox label="Community" checked={false} id="community" />
-                <span className={styles.tagQuantity}>2</span>
-              </label>
-            </li>
-            <li className={styles.tagItem}>
-              <label htmlFor="compatibility" className={styles.tagLabel}>
-                <Checkbox label="Compatibility" checked={true} id="compatibility" disabled={true} />
-                <span className={styles.tagQuantity}>2</span>
-              </label>
-            </li>
+            {entries.map((tag, index) => (
+              <li className={styles.tagItem} key={index}>
+                <label htmlFor={tag[0].toLowerCase()} className={styles.tagLabel}>
+                  <Checkbox label={tag[0]} checked={false} id={tag[0].toLowerCase()} />
+                  <span className={styles.tagQuantity}>{tag[1]}</span>
+                </label>
+              </li>
+            ))}
           </ul>
         </section>
       </div>

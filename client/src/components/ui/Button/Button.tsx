@@ -13,6 +13,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   typeButton?: ButtonType;
   icon?: React.ElementType;
   sizeIcon?: number;
+  onClick?: () => void;
 }
 
 export const Button = ({
@@ -25,6 +26,7 @@ export const Button = ({
   disabled,
   icon: Icon,
   sizeIcon = 20,
+  onClick,
   ...rest
 }: ButtonProps) => {
   return (
@@ -32,6 +34,7 @@ export const Button = ({
       className={`${styles.button} ${styles[variant]} ${styles[size]} ${styles[typeButton]} ${className ?? ''}`}
       disabled={disabled || isLoading}
       {...rest}
+      onClick={onClick}
     >
       {Icon && <Icon size={sizeIcon} aria-hidden={true} />}
       <span>{isLoading ? 'Загрузка...' : children}</span>

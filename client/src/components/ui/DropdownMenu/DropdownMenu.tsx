@@ -1,15 +1,52 @@
 import styles from './DrowdownMenu.module.scss';
-import { DropdownMenuProps } from 'shared/types';
+import { DropdownMenuItem } from 'shared/types';
 
-export const DropdownMenu = ({ items }: DropdownMenuProps) => {
-  return (
-    <ul className={styles.dropdown} role="menu">
-      {items.map((item, index) => (
-        <li className={styles.dropdownItem} role="menuitem" key={index}>
+interface DropdownMenuProps {
+  items: DropdownMenuItem[];
+  onClose: () => void;
+}
+
+export const DropdownMenu = ({ items, onClose }: DropdownMenuProps) => {
+  const renderItem = (item: DropdownMenuItem, index: number) => {
+    if (item.type === 'link') {
+      return (
+        <li className={styles.dropdownItem} key={index}>
+          <a
+            href={item.link}
+            target="_blank"
+            role="menuitem"
+            className={styles.dropdownControl}
+            rel="noreferrer"
+            onClick={onClose}
+          >
+            {item.icon}
+            <span>{item.label}</span>
+          </a>
+        </li>
+      );
+    }
+
+    return (
+      <li className={styles.dropdownItem} key={index}>
+        <button
+          type="button"
+          role="menuitem"
+          className={styles.dropdownControl}
+          onClick={() => {
+            item.onClick();
+            onClose();
+          }}
+        >
           {item.icon}
           <span>{item.label}</span>
-        </li>
-      ))}
+        </button>
+      </li>
+    );
+  };
+
+  return (
+    <ul className={styles.dropdown} role="menu">
+      {items.map((item, index) => renderItem(item, index))}
     </ul>
   );
 };

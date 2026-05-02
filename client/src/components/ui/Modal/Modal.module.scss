@@ -1,0 +1,25 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  overflow: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+  background-color: rgba(19, 19, 19, 0.7);
+  padding: rem(30);
+}
+
+.modalWindow {
+  background-color: var(--color-surface);
+  padding: rem(24);
+  border-radius: rem(12);
+  max-width: rem(570);
+  width: 100%;
+}

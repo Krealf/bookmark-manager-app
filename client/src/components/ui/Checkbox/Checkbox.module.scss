@@ -17,6 +17,7 @@
   border: rem(1) solid var(--color-text-faint);
   transition: var(--transition-duration);
   border-radius: rem(4);
+  cursor: pointer;
 
   &::after {
     content: '';

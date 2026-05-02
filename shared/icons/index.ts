@@ -12,3 +12,5 @@ export { IconUnpin } from './IconUnpin';
 export { IconVisit } from './IconVisit';
 export { IconCopy } from './IconCopy';
 export { IconEdit } from './IconEdit';
+export { IconUnarchived } from './IconUnarchived';
+export { IconDelete } from './IconDelete';

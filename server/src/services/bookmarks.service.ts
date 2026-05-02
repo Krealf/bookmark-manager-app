@@ -6,16 +6,47 @@ import { readFileSync } from 'fs';
 const DB_PATH = join(__dirname, '../data/data.json');
 
 function load(): Bookmark[] {
+  // Если файла не существует, то возвращаем пустой массив
   if (!existsSync(DB_PATH)) return [];
-  return JSON.parse(readFileSync(DB_PATH, 'utf-8'));
+  // Иначе парсим файл с данными и берём оттуда данные по ключу bookmarks
+  return JSON.parse(readFileSync(DB_PATH, 'utf-8')).bookmarks;
 }
 
 function save(data: Bookmark[]): void {
-  writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
+  writeFileSync(DB_PATH, JSON.stringify({ bookmarks: data }, null, 2));
 }
 
+// Сервис bookmarks с методами для работы с БД
 export const BookmarksService = {
+  // Описываем метод findAll, который возвращает все закладки с типизацией
   findAll(): Bookmark[] {
+    // Возвращаем результат вызова функции load
     return load();
+  },
+
+  findById(id: string): Bookmark {
+    // Возвращаем результат вызова функции load
+    const bookmarks = load();
+    const bookmark = bookmarks.find((bookmark) => bookmark.id === id);
+
+    if (!bookmark) {
+      throw new Error('Bookmark not found');
+    }
+
+    return bookmark;
+  },
+
+  update(id: string, dto: Partial<Omit<Bookmark, 'id' | 'createdAt'>>): Bookmark {
+    const bookmarks = load();
+    const index = bookmarks.findIndex((b) => b.id === id);
+
+    if (index === -1) {
+      throw new Error('Bookmark not found');
+    }
+
+    bookmarks[index] = { ...bookmarks[index], ...dto };
+    save(bookmarks);
+
+    return bookmarks[index];
   },
 };

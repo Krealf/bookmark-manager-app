@@ -27,20 +27,26 @@ export interface CheckboxProps {
   id: string;
 }
 
-export interface DropdownMenuItem {
+// Тип для ссылки
+type DropdownMenuLinkItem = {
+  type: 'link';
   label: string;
   icon: React.ReactNode;
-}
+  link: string; // Обязательно поле link
+};
 
-export interface DropdownMenuProps {
-  items: DropdownMenuItem[];
-}
+// Тип для кнопки действия
+type DropdownMenuActionItem = {
+  type: 'action';
+  link?: string;
+  label: string;
+  icon: React.ReactNode;
+  onClick: () => void;
+};
+
+export type DropdownMenuItem = DropdownMenuLinkItem | DropdownMenuActionItem;
 
 export interface ApiResponse<T> {
   data: T;
   message?: string;
 }
-
-export type CreateBookmarkDto = Omit<Bookmark, 'id' | 'createdAt'>;
-
-export type UpdateBookmarkDto = Partial<CreateBookmarkDto>;

@@ -3,13 +3,7 @@ import { SvgProps } from '../types';
 
 export const IconArchived = ({ size }: SvgProps) => {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={size}
-      height={size}
-      fill="none"
-      viewBox="0 0 20 20"
-    >
+    <svg width={size} height={size} fill="none" viewBox="0 0 20 20">
       <path
         stroke="currentColor"
         strokeLinecap="round"

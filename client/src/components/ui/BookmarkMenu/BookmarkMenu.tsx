@@ -1,9 +1,14 @@
 import styles from './BookmarkMenu.module.scss';
 import React, { useEffect, useRef, useState } from 'react';
-import { IconDots, IconVisit, IconCopy, IconUnpin, IconEdit, IconArchived } from 'shared/icons';
+import { IconDots } from 'shared/icons';
 import { DropdownMenu } from '@/components/ui/DropdownMenu';
+import { DropdownMenuItem } from 'shared/types';
 
-export const BookmarkMenu = () => {
+interface BookmarkMenuProps {
+  items: DropdownMenuItem[];
+}
+
+export const BookmarkMenu = ({ items }: BookmarkMenuProps) => {
   const [isOpen, setIsOpen] = useState(false); // Определяем показывать меню или нет
   const menuRef = useRef<HTMLDivElement>(null); // Создаём ссылку на само меню для отслеживания клика
 
@@ -23,18 +28,10 @@ export const BookmarkMenu = () => {
     return () => document.removeEventListener('mousedown', handleOutsideClick);
   }, []);
 
-  const menu = [
-    { label: 'Visit', icon: <IconVisit size={16} /> },
-    { label: 'Copy URL', icon: <IconCopy size={16} /> },
-    { label: 'Unpin', icon: <IconUnpin size={16} /> },
-    { label: 'Edit', icon: <IconEdit size={16} /> },
-    { label: 'Archive', icon: <IconArchived size={16} /> },
-  ];
-
   return (
     <div className={styles.menu} ref={menuRef}>
       <button
-        className={styles.button}
+        className={`${styles.button} ${isOpen ? styles.active : ''}`}
         type="button"
         aria-haspopup="true"
         aria-expanded={isOpen}
@@ -44,7 +41,7 @@ export const BookmarkMenu = () => {
         <IconDots size={20} />
       </button>
 
-      {isOpen && <DropdownMenu items={menu} />}
+      {isOpen && <DropdownMenu items={items} onClose={() => setIsOpen(false)} />}
     </div>
   );
 };
