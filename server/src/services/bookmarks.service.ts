@@ -6,19 +6,18 @@ import { readFileSync } from 'fs';
 const DB_PATH = join(process.env.DATA_PATH || '/data', 'data.json');
 
 function load(): Bookmark[] {
-  console.log(DB_PATH);
-  // Если файла не существует, то возвращаем пустой массив
-  if (!existsSync(DB_PATH)) return [];
+  // Если файла не существует, то создаём его
+  if (!existsSync(DB_PATH)) {
+    writeFileSync(DB_PATH, JSON.stringify({ bookmarks: [] }, null, 2));
+    return [];
+  };
 
-  console.log(JSON.parse(readFileSync(DB_PATH, 'utf-8')));
   // Иначе парсим файл с данными и берём оттуда данные по ключу bookmarks
   return JSON.parse(readFileSync(DB_PATH, 'utf-8')).bookmarks;
 }
 
 function save(data: Bookmark[]): void {
-  console.log(JSON.parse(readFileSync(DB_PATH, 'utf-8')));
   writeFileSync(DB_PATH, JSON.stringify({ bookmarks: data }, null, 2));
-  console.log(JSON.parse(readFileSync(DB_PATH, 'utf-8')));
 }
 
 // Сервис bookmarks с методами для работы с БД
