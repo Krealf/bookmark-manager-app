@@ -12,9 +12,10 @@ import {
 } from 'shared/icons';
 import { useModal } from '@/hooks/useModal.ts';
 import { ConfirmModal } from '@/components/ui/ConfirmModal';
+import { EditModal } from '@/components/ui/EditModal';
 
 export const HomePage = () => {
-  const { bookmarks, togglePin, toggleArchived, loading, clickToCopyUrl } = useBookmarks();
+  const { bookmarks, togglePin, toggleArchived, loading, clickToCopyUrl, updateBookmark } = useBookmarks();
   const { activeModal, openModal, closeModal } = useModal();
 
   const activeBookmarks = bookmarks.filter((b) => !b.isArchived);
@@ -55,7 +56,7 @@ export const HomePage = () => {
                   type: 'action',
                   label: 'Edit',
                   icon: <IconEdit size={16} />,
-                  onClick: () => console.log('Click to Edit'),
+                  onClick: () => openModal({ type: 'edit', bookmark, id: bookmark.id }),
                 },
                 {
                   type: 'action',
@@ -74,16 +75,24 @@ export const HomePage = () => {
         </div>
       </section>
 
+      {activeModal?.type === 'edit' && (
+        <EditModal
+          title="Edit bookmark"
+          description="Update your saved link details — change the title, description, URL, or tags anytime."
+          confirmLabel="Save Bookmark"
+          bookmark={activeModal.bookmark}
+          onClose={closeModal}
+          onSave={updateBookmark}
+        />
+      )}
+
       {activeModal?.type === 'confirm-archive' && (
         <ConfirmModal
           title="Archive bookmark"
           description="Are you sure you want to archive this bookmark?"
           confirmLabel="Archive"
-          onConfirm={() => {
-            closeModal();
-            toggleArchived(activeModal?.id);
-          }}
-          onCancel={() => closeModal()}
+          onClose={closeModal}
+          onSave={() => toggleArchived(activeModal?.id)}
         />
       )}
     </>

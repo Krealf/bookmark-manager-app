@@ -40,4 +40,4 @@ npm-debug.log*
 Thumbs.db
 
 # Data
-/server/src/data/*.json
+/server/src/data/

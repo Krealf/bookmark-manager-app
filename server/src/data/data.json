@@ -5,14 +5,14 @@
       "title": "GitHub",
       "url": "https://github.com",
       "favicon": "./assets/images/favicon-github.png",
-      "description": "Where the world builds software. Millions of developers and companies build, ship, and maintain their software on GitHub.",
+      "description": "I don't know",
       "tags": [
         "Tools",
         "Community",
         "Git"
       ],
       "pinned": false,
-      "isArchived": true,
+      "isArchived": false,
       "visitCount": 198,
       "createdAt": "2024-01-05T06:00:00Z",
       "lastVisited": "2025-09-24T15:30:00Z"
@@ -29,7 +29,7 @@
         "Tips"
       ],
       "pinned": false,
-      "isArchived": false,
+      "isArchived": true,
       "visitCount": 234,
       "createdAt": "2024-01-08T07:30:00Z",
       "lastVisited": "2025-09-24T11:00:00Z"
@@ -81,7 +81,7 @@
         "Community"
       ],
       "pinned": true,
-      "isArchived": false,
+      "isArchived": true,
       "visitCount": 47,
       "createdAt": "2024-01-15T10:30:00Z",
       "lastVisited": "2025-09-23T14:45:00Z"
@@ -105,7 +105,7 @@
     },
     {
       "id": "bm-007",
-      "title": "Can I Use",
+      "title": "I should use this",
       "url": "https://caniuse.com",
       "favicon": "./assets/images/favicon-caniuse.png",
       "description": "Support tables for HTML5, CSS3, etc. Check browser compatibility for web technologies.",

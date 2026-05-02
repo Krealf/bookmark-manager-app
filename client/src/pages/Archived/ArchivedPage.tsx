@@ -66,11 +66,8 @@ export const ArchivedPage = () => {
           title="Unarchive bookmark"
           description="Move this bookmark back to your active list?"
           confirmLabel="Unarchive"
-          onConfirm={() => {
-            closeModal();
-            toggleArchived(activeModal?.id);
-          }}
-          onCancel={() => closeModal()}
+          onClose={closeModal}
+          onSave={() => toggleArchived(activeModal?.id)}
         />
       )}
     </>

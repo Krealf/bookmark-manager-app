@@ -23,6 +23,18 @@ export function useBookmarks() {
       });
   }
 
+  // Partial делает все ключи объекта Bookmark необязательными
+  function updateBookmark(id: string, body: Partial<Bookmark>) {
+    const previous = bookmarks;
+
+    setBookmarks(bookmarks.map((b) => (b.id === id ? { ...b, ...body } : b)));
+
+    api.patch<Bookmark[]>(`/api/bookmarks/${id}`, body).catch((err) => {
+      console.error(err);
+      setBookmarks(previous);
+    });
+  }
+
   function toggleArchived(id: string) {
     const previous = bookmarks;
 
@@ -64,5 +76,6 @@ export function useBookmarks() {
     togglePin,
     toggleArchived,
     clickToCopyUrl,
+    updateBookmark,
   };
 }

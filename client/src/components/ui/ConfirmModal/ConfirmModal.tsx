@@ -7,8 +7,8 @@ interface ConfirmModal {
   description: string;
   confirmLabel: string;
   danger?: boolean;
-  onConfirm: () => void;
-  onCancel: () => void;
+  onClose: () => void;
+  onSave: () => void;
 }
 
 export const ConfirmModal = ({
@@ -16,11 +16,12 @@ export const ConfirmModal = ({
   description,
   confirmLabel,
   danger,
-  onConfirm,
-  onCancel,
+  onClose,
+  onSave,
+  ...rest
 }: ConfirmModal) => {
   return (
-    <Modal onClose={onCancel} className={styles.modalWindow}>
+    <Modal onClose={onClose} className={styles.modalWindow}>
       <div className={styles.heading}>
         <h2 className={styles.title}>{title}</h2>
         <div className={styles.description}>{description}</div>
@@ -29,7 +30,7 @@ export const ConfirmModal = ({
         <Button
           variant="secondary"
           size="md"
-          onClick={onCancel}
+          onClick={onClose}
           type="button"
           className={`${styles.cancel}`}
         >
@@ -38,7 +39,7 @@ export const ConfirmModal = ({
         <Button
           variant="primary"
           size="md"
-          onClick={onConfirm}
+          onClick={() => {onClose(); onSave()}}
           type="button"
           className={`${styles.cancel}`}
         >

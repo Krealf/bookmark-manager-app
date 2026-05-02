@@ -35,8 +35,8 @@
   width: 100%;
   padding: rem(8);
 
-  @include hover(true) {
-    background-color: var(--color-nav-item-bg);
+  @include hover() {
+    background-color: var(--color-favicon-border);
     color: var(--color-text);
   }
 }
