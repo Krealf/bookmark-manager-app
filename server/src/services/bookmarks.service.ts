@@ -1,18 +1,27 @@
 import { Bookmark } from 'shared/types';
 import { join } from 'node:path';
-import { existsSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { readFileSync } from 'fs';
 
-const DB_PATH = join(process.env.DATA_PATH || '/data', 'data.json');
+const DATA_DIR = process.env.DATA_PATH
+  ? join(process.cwd(), process.env.DATA_PATH)
+  : join(__dirname, '../data');
 
-function load(): Bookmark[] {
-  // Если файла не существует, то создаём его
+const DB_PATH = join(DATA_DIR, 'data.json');
+
+function ensureFile(): void {
+  // Создаём директорию если нет
+  if (!existsSync(DATA_DIR)) {
+    mkdirSync(DATA_DIR, { recursive: true });
+  }
+  // Создаём файл если нет
   if (!existsSync(DB_PATH)) {
     writeFileSync(DB_PATH, JSON.stringify({ bookmarks: [] }, null, 2));
-    return [];
   }
+}
 
-  // Иначе парсим файл с данными и берём оттуда данные по ключу bookmarks
+function load(): Bookmark[] {
+  ensureFile();
   return JSON.parse(readFileSync(DB_PATH, 'utf-8')).bookmarks;
 }
 
