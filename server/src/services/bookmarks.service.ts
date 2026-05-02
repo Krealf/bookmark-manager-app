@@ -10,7 +10,7 @@ function load(): Bookmark[] {
   if (!existsSync(DB_PATH)) {
     writeFileSync(DB_PATH, JSON.stringify({ bookmarks: [] }, null, 2));
     return [];
-  };
+  }
 
   // Иначе парсим файл с данными и берём оттуда данные по ключу bookmarks
   return JSON.parse(readFileSync(DB_PATH, 'utf-8')).bookmarks;

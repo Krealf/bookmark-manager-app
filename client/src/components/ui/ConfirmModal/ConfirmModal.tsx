@@ -39,7 +39,10 @@ export const ConfirmModal = ({
         <Button
           variant="primary"
           size="md"
-          onClick={() => {onClose(); onSave()}}
+          onClick={() => {
+            onClose();
+            onSave();
+          }}
           type="button"
           className={`${styles.cancel}`}
         >

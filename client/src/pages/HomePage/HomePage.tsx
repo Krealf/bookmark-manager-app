@@ -15,7 +15,8 @@ import { ConfirmModal } from '@/components/ui/ConfirmModal';
 import { EditModal } from '@/components/ui/EditModal';
 
 export const HomePage = () => {
-  const { bookmarks, togglePin, toggleArchived, loading, clickToCopyUrl, updateBookmark } = useBookmarks();
+  const { bookmarks, togglePin, toggleArchived, loading, clickToCopyUrl, updateBookmark } =
+    useBookmarks();
   const { activeModal, openModal, closeModal } = useModal();
 
   const activeBookmarks = bookmarks.filter((b) => !b.isArchived);
