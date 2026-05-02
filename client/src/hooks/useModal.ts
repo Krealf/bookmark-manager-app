@@ -15,10 +15,16 @@ export function useModal() {
   const [activeModal, setActiveModal] = useState<ModalState>(null);
 
   // Функция для открытия модального окна нужного типа
-  const openModal = (modal: NonNullable<ModalState>) => setActiveModal(modal);
+  const openModal = (modal: NonNullable<ModalState>) => {
+    document.documentElement.classList.add('modal-open');
+    setActiveModal(modal);
+  };
 
   // Функция для закрытия модального окна
-  const closeModal = () => setActiveModal(null);
+  const closeModal = () => {
+    document.documentElement.classList.remove('modal-open')
+    setActiveModal(null);
+  };
 
   return { activeModal, openModal, closeModal };
 }

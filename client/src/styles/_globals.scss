@@ -1,5 +1,9 @@
 @use 'helpers' as *;
 
+html.modal-open {
+  overflow: hidden;
+}
+
 body {
   font-size: rem(14);
   line-height: 140%;
