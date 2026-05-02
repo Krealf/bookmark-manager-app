@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import { existsSync, writeFileSync } from 'node:fs';
 import { readFileSync } from 'fs';
 
-const DB_PATH = join(__dirname, '../data/data.json');
+const DB_PATH = join(process.env.DATA_PATH || '/data', 'data.json');
 
 function load(): Bookmark[] {
   console.log(DB_PATH);
