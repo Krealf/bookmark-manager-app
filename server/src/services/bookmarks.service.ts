@@ -16,7 +16,30 @@ function ensureFile(): void {
   }
   // Создаём файл если нет
   if (!existsSync(DB_PATH)) {
-    writeFileSync(DB_PATH, JSON.stringify({ bookmarks: [] }, null, 2));
+    writeFileSync(
+      DB_PATH,
+      JSON.stringify(
+        {
+          bookmarks: [
+            {
+              id: 'bm-001',
+              title: 'GitHub',
+              url: 'https://github.com',
+              favicon: './assets/images/favicon-github.png',
+              description: "I don't",
+              tags: ['Tools', 'Community', 'Git'],
+              pinned: false,
+              isArchived: false,
+              visitCount: 198,
+              createdAt: '2024-01-05T06:00:00Z',
+              lastVisited: '2025-09-24T15:30:00Z',
+            },
+          ],
+        },
+        null,
+        2
+      )
+    );
   }
 }
 
